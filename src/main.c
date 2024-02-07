@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 15:26:05 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:26:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,34 @@ void	game_setup(t_data *data)
 
 }
 
+char **get_map(void)
+{
+	int		fd;	
+	char	*ptr;
+	char	**map = NULL;
+
+	fd = open("map/map1.ber", O_RDONLY);
+	if (!fd)
+		return (write(1, "error",5), NULL);
+	ptr = get_next_line(fd);
+	
+	printf("\nOutput %zu",ft_strlen(ptr));
+
+
+
+	free(ptr);
+	close(fd);
+
+	return (map);
+}
+
+
 
 
 
 int	main(void)
 {
 	t_data	data;
-	int		fd;	
-	char	*ptr;
-
-	fd = open("map/map1.ber", O_RDONLY);
-	if (!fd)
-		return (write(1, "error",5));
-	ptr = get_next_line(fd);
-	ptr = get_next_line(fd);
-	printf("\nOutput %s",ptr);
-	free(ptr);
-	close(fd);
-
-
 
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)

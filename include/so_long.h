@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 15:13:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:20:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
+# include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <X11/X.h>
