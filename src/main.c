@@ -6,13 +6,13 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 12:48:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:26:05 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
- 
-int on_destroy(t_data *data)
+
+int	on_destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
@@ -44,7 +44,7 @@ int	put_background(t_data *data)
 	return (1);
 }
 
-void game_setup(t_data *data)
+void	game_setup(t_data *data)
 {
 	int posx = 0;
 	int	posy = 0;
@@ -74,6 +74,19 @@ void game_setup(t_data *data)
 int	main(void)
 {
 	t_data	data;
+	int		fd;	
+	char	*ptr;
+
+	fd = open("map/map1.ber", O_RDONLY);
+	if (!fd)
+		return (write(1, "error",5));
+	ptr = get_next_line(fd);
+	ptr = get_next_line(fd);
+	printf("\nOutput %s",ptr);
+	free(ptr);
+	close(fd);
+
+
 
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
@@ -97,6 +110,11 @@ int	main(void)
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
 		&on_destroy, &data);
 	mlx_loop(data.mlx_ptr);
+
+
+
+
+
 
 	return (0);
 }

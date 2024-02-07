@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 12:33:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:13:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 # define SO_LONG_H
 
 # include "../mlx/mlx.h"
+# include "get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 # define JUMPLEFT -100
 # define JUMPRIGHT 100
@@ -41,8 +44,13 @@ typedef struct s_data
 	int		move_y_down;
 }	t_data;
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
 int	on_destroy(t_data *data);
 int	put_background(t_data *data);
+
 
 
 
