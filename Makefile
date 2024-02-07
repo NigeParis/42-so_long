@@ -7,8 +7,7 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 SRCS=$(addprefix $(SRC_DIR), $(SRC))
 OBJ=$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 HEAD=$(addprefix $(INCLUDE), $(HEADER))
-BONUS_SRC=$(addprefix $(BONUS_DIR), $(BONUS))
-BONUS_OBJ=$(addprefix $(BONUS_DIR), $(BONUS:.c=.o))
+
 CC=cc
 
 ###############################################################################
@@ -16,9 +15,8 @@ CC=cc
 
 SRC_DIR=
 OBJ_DIR=
-BONUS_DIR=
 INCLUDE= -I/usr/include -Imlx
-SRC= main.c
+SRC= ./src/main.c  ./src/player.c
 
 HEADER=
 ###############################################################################
@@ -37,7 +35,7 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 
 	
 clean:
-	@rm -f $(SRC_OBJ) $(BONUS_OBJ)
+	@rm -f $(OBJ)
 
 fclean:clean
 	@echo "FCLEAN all .o et .a files .......\n"
