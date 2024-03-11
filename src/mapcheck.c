@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:57:15 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/11 16:37:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:20:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 int	ft_ismap_rectangle(t_data *data)
 {
-
-	int linelen;
+	int	linelen;
 	int	i;
-	int y;	
+	int	y;	
 
 	i = 0;
 	y = 0;
@@ -27,6 +26,17 @@ int	ft_ismap_rectangle(t_data *data)
 	{
 		y = ft_strlen(data->map[i]);
 		if (y != linelen)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_firstlastline_check(t_data *data, int line, int i)
+{
+	while (data->map[line][i] != '\0')
+	{
+		if (data->map[line][i] != '1')
 			return (1);
 		i++;
 	}
@@ -44,21 +54,10 @@ int	ft_ismap_border(t_data *data)
 	endlinechar = ft_strlen(data->map[0]) - 1;
 	while (data->map[lastline] != NULL)
 		lastline++;
-
-	while (data->map[0][i] != '\0')
-	{
-		if (data->map[0][i] != '1')
-			return (1);
-		i++;
-	}
-	i = 0;
-	while (data->map[lastline - 1][i] != '\0')
-	{
-		if (data->map[lastline - 1][i] != '1')
-			return (1);
-		i++;
-	}
-
+	if (ft_firstlastline_check(data, 0, i))
+		return (1);
+	if (ft_firstlastline_check(data, lastline - 1, i))
+		return (1);
 	i = 1;
 	while (i < lastline - 1)
 	{
@@ -66,6 +65,5 @@ int	ft_ismap_border(t_data *data)
 			return (1);
 		i++;
 	}
-
 	return (0);
 }
