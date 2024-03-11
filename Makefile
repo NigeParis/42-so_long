@@ -16,9 +16,9 @@ CC=cc
 SRC_DIR=
 OBJ_DIR=
 INCLUDE= -I/usr/include -Imlx
-SRC= ./src/main.c  ./src/player.c ./src/get_next_line.c ./src/get_next_line_utils.c 
+SRC= ./src/main.c  ./src/player.c ./src/get_next_line.c ./src/get_next_line_utils.c ./src/mapcheck.c
 
-HEADER=
+HEADER= 
 ###############################################################################
 ## RULES
 all: $(NAME)
@@ -26,11 +26,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Creating FILE .......\n"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) ./libft.a $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 	@echo "COMPILE all c files to .o FILES .......\n"
-	@$(CC) $(CFLAGS) -c $(SRCS) $(HEAD)
+	@$(CC) $(CFLAGS) -c $(SRCS)  $(HEAD)
 
 
 	

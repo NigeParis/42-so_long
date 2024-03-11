@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 12:36:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:49:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	keymove(int keysym, t_data *data, char key, char dir)
 {
-	printf("Pressed key: %d : %u \n", key, keysym);
+	printf("\nPressed key: %d : %u", key, keysym);
 
 	if (keysym == key)
 	{

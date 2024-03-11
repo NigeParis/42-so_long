@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 17:20:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:38:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,16 @@ typedef struct s_data
 	int		move_x_right;
 	int		move_y_up;
 	int		move_y_down;
+	char 	**map;
 }	t_data;
+
+// typedef struct s_map
+// {
+// 	char **map;
+	
+// }	t_map;
+
+
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -51,10 +60,8 @@ typedef struct s_data
 
 int	on_destroy(t_data *data);
 int	put_background(t_data *data);
-
-
-
-
+int	ft_ismap_rectangle(t_data *data);
+int	ft_ismap_border(t_data *data);
 int	keymove(int keysym, t_data *data, char key, char dir);
 int	on_keypress(int keysym, t_data *data);
 

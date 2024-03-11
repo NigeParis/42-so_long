@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 17:26:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:25:14 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,34 +68,55 @@ void	game_setup(t_data *data)
 
 }
 
-char **get_map(void)
+char	**get_map(void)
 {
-	int		fd;	
-	char	*ptr;
-	char	**map = NULL;
+	int		fd;
+	char	*line;
+	char	*tmp;
+	char	*tab;
+	char	**map;
 
+	tab = ft_strdup("");
 	fd = open("map/map1.ber", O_RDONLY);
 	if (!fd)
-		return (write(1, "error",5), NULL);
-	ptr = get_next_line(fd);
-	
-	printf("\nOutput %zu",ft_strlen(ptr));
-
-
-
-	free(ptr);
+		return (write(1, "error", 5), NULL);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!line)
+			break ;
+		tmp = ft_strjoin(tab, line);
+		tab = tmp;
+		free(line);
+		line = get_next_line(fd);
+	}
+	map = ft_split(tab, '\n');
+	if (line)
+		free(line);
 	close(fd);
-
+	free(tmp);
 	return (map);
 }
-
-
-
-
 
 int	main(void)
 {
 	t_data	data;
+	int		check;
+
+	check = 0;
+	data.map = get_map();
+	check = ft_ismap_rectangle(&data);
+	if (check)
+	{
+		ft_putstr_fd("Error", 1);
+		return (0);
+	}	
+	check = ft_ismap_border(&data);
+	if (check)
+	{
+		ft_putstr_fd("Error", 1);
+		return (0);
+	}	
 
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
@@ -104,21 +125,19 @@ int	main(void)
 	if (!data.win_ptr)
 		return (free(data.mlx_ptr), 1);
 	game_setup(&data);
-
 	put_background(&data);
-
-
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
 		data.playerdown_ptr, 0, 0);
 
 
 
 
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
 
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
 		&on_destroy, &data);
 	mlx_loop(data.mlx_ptr);
+
 
 
 
