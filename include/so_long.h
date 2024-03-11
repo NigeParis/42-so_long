@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/11 17:16:41 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:27:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,8 @@ typedef struct s_data
 	int		move_x_right;
 	int		move_y_up;
 	int		move_y_down;
-	char 	**map;
+	char	**map;
 }	t_data;
-
-// typedef struct s_map
-// {
-// 	char **map;
-	
-// }	t_map;
 
 
 

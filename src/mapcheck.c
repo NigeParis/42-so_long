@@ -6,12 +6,11 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:57:15 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/11 17:20:53 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:24:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
 
 int	ft_ismap_rectangle(t_data *data)
 {

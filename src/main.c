@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/11 16:25:14 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:33:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ int	put_background(t_data *data)
 
 void	game_setup(t_data *data)
 {
-	int posx = 0;
-	int	posy = 0;
+	int	posx;
+	int	posy;
 
+	posx = 0;
+	posy = 0;
 	data->player_pos_x = 0;
 	data->player_pos_y = 0;
 	data->move_x_left = JUMPLEFT;
@@ -94,8 +96,7 @@ char	**get_map(void)
 	if (line)
 		free(line);
 	close(fd);
-	free(tmp);
-	return (map);
+	return (free(tmp), map);
 }
 
 int	main(void)
