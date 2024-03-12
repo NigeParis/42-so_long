@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/11 17:33:02 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:33:25 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,54 +21,6 @@ int	on_destroy(t_data *data)
 	return (0);
 }
 
-int	put_background(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-
-	while (y < 800)
-	{
-		while (x < 1200)
-		{
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->bak_ptr, x, y);
-			x += 100;
-		}
-		if (x == 1200)
-			x = 0;
-		y += 100;
-	}
-	return (1);
-}
-
-void	game_setup(t_data *data)
-{
-	int	posx;
-	int	posy;
-
-	posx = 0;
-	posy = 0;
-	data->player_pos_x = 0;
-	data->player_pos_y = 0;
-	data->move_x_left = JUMPLEFT;
-	data->move_x_right = JUMPRIGHT;
-	data->move_y_up = JUMPUP;
-	data->move_y_down = JUMPDOWN;
-	data->bak_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/tile.xpm", &posx, &posy);
-	data->playerup_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/up.xpm", &posx, &posy);
-	data->playerdown_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/down.xpm", &posx, &posy);
-	data->playerleft_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/left.xpm", &posx, &posy);
-	data->playerright_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/right.xpm", &posx, &posy);
-
-}
 
 char	**get_map(void)
 {
@@ -85,7 +37,7 @@ char	**get_map(void)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!line)
+		if (!line  || line[0] == '\n')
 			break ;
 		tmp = ft_strjoin(tab, line);
 		tab = tmp;
@@ -99,51 +51,55 @@ char	**get_map(void)
 	return (free(tmp), map);
 }
 
+void	get_map_size(t_data *data)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	x = (ft_strlen(data->map[0])) * JUMPRIGHT;
+	while (data->map[i] != NULL)
+		i++;
+	y = i * JUMPDOWN;
+
+	data->window_size_x = x;
+	data->window_size_y = y;
+}
+
+
+
+
+
 int	main(void)
 {
 	t_data	data;
-	int		check;
+	int		error;
 
-	check = 0;
+
+
 	data.map = get_map();
-	check = ft_ismap_rectangle(&data);
-	if (check)
+	error = mapcheck(&data);
+	if (!error)
 	{
-		ft_putstr_fd("Error", 1);
-		return (0);
-	}	
-	check = ft_ismap_border(&data);
-	if (check)
-	{
-		ft_putstr_fd("Error", 1);
-		return (0);
-	}	
-
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
-		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 1200, 800, "So long :)");
-	if (!data.win_ptr)
-		return (free(data.mlx_ptr), 1);
-	game_setup(&data);
-	put_background(&data);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-		data.playerdown_ptr, 0, 0);
+		get_map_size(&data);
+		data.mlx_ptr = mlx_init();
+		if (!data.mlx_ptr)
+			return (1);
+		data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_size_x, data.window_size_y, "So long :)");
+		if (!data.win_ptr)
+			return (free(data.mlx_ptr), 1);
+		game_setup(&data);
+		put_background(&data);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
+			data.playerup_ptr, data.player_pos_x, data.player_pos_y);
+		mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
+		mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
+			&on_destroy, &data);
+	
+		mlx_loop(data.mlx_ptr);
 
 
-
-
-
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
-	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
-		&on_destroy, &data);
-	mlx_loop(data.mlx_ptr);
-
-
-
-
-
-
-
+	}
 	return (0);
 }

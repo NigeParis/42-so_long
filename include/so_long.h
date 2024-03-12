@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/11 17:27:53 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:16:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,17 @@ typedef struct s_data
 	void	*playerdown_ptr;
 	void	*playerleft_ptr;
 	void	*playerright_ptr;
+	void	*wall_ptr;
+	void	*coll_ptr;
+	void	*exit_ptr;
 	int		player_pos_x;
 	int		player_pos_y;
 	int		move_x_left;
 	int		move_x_right;
 	int		move_y_up;
 	int		move_y_down;
+	int		window_size_x;
+	int		window_size_y;
 	char	**map;
 }	t_data;
 
@@ -52,12 +57,20 @@ typedef struct s_data
 #  define BUFFER_SIZE 5
 # endif
 
-int	on_destroy(t_data *data);
-int	put_background(t_data *data);
-int	ft_ismap_rectangle(t_data *data);
-int	ft_firstlastline_check(t_data *data, int line, int i);
-int	ft_ismap_border(t_data *data);
-int	keymove(int keysym, t_data *data, char key, char dir);
-int	on_keypress(int keysym, t_data *data);
+int		on_destroy(t_data *data);
+void	game_setup(t_data *data);
+void	get_player_start(t_data * data);
+int		put_background(t_data *data);
+int		ft_ismap_rectangle(t_data *data);
+int		ft_firstlastline_check(t_data *data, int line, int i);
+int		ft_ismap_border(t_data *data);
+int		keymove(int keysym, t_data *data, char key, char dir);
+int		on_keypress(int keysym, t_data *data);
+int		is_game_object(t_data *data, char c);
+int		mapcheck(t_data *data);
+int		is_items_known(char c, char *str);
+int		check_map_chars(t_data *data);
+void	get_map_size(t_data *data);
+
 
 #endif
