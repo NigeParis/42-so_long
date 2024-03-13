@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 12:48:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:38:01 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ void	game_setup(t_data *data)
 {
 	data->player_pos_x = 0;
 	data->player_pos_y = 0;
-	data->move_x_left = JUMPLEFT;
-	data->move_x_right = JUMPRIGHT;
-	data->move_y_up = JUMPUP;
-	data->move_y_down = JUMPDOWN;
 	get_player_start(data);
 	load_tiles(data);
+	put_background(data, 0, 0);
+
 }
 
 void	get_player_start(t_data *data)
@@ -62,8 +60,8 @@ void	get_player_start(t_data *data)
 		{
 			if (data->map[x][y] == 'P')
 			{
-				data->player_pos_y = y * JUMPDOWN;
-				data->player_pos_x = x * JUMPRIGHT;
+				data->player_pos_y = y * JUMPRIGHT;
+				data->player_pos_x = x * JUMPDOWN;
 				data->map[x][y] = '0';
 				break ;
 			}
@@ -74,35 +72,28 @@ void	get_player_start(t_data *data)
 	}
 }
 
-int	put_background(t_data *data)
+int	put_background(t_data *data, int x, int y)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-
-	while (y < data->window_size_y)
+	while (x < data->window_size_x)
 	{
-		while (x < data->window_size_x)
+		y = 0;
+		while (y < data->window_size_y)
 		{
-			if (data->map[(y / 100)][(x / 100)] == '0')				
+			if (data->map[(x / 100)][(y / 100)] == '0')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->bak_ptr, x, y);
-			if (data->map[(y / 100)][(x / 100)] == '1')				
+					data->bak_ptr, y, x);
+			if (data->map[(x / 100)][(y / 100)] == '1')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->wall_ptr, x, y);
-			if (data->map[(y / 100)][(x / 100)] == 'C')				
+					data->wall_ptr, y, x);
+			if (data->map[(x / 100)][(y / 100)] == 'C')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->coll_ptr, x, y);
-			if (data->map[(y / 100)][(x / 100)] == 'E')				
+					data->coll_ptr, y, x);
+			if (data->map[(x / 100)][(y / 100)] == 'E')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->exit_ptr, x, y);
-			x += JUMPRIGHT;
+					data->exit_ptr, y, x);
+			y += JUMPRIGHT;
 		}
-		if (x == data->window_size_x)
-			x = 0;
-		y += JUMPDOWN;
+		x += JUMPDOWN;
 	}
 	return (1);
 }

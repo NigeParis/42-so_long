@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:57:15 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 11:13:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:11:21 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,54 @@
 int	ft_ismap_rectangle(t_data *data)
 {
 	int	linelen;
-	int	i;
+	int	x;
 	int	y;	
 
-	i = 0;
+	x = 0;
 	y = 0;
-	linelen = ft_strlen(data->map[i]);
-	while (data->map[i] != NULL)
+	linelen = ft_strlen(data->map[x]);
+	while (data->map[x] != NULL)
 	{
-		y = ft_strlen(data->map[i]);
+		y = ft_strlen(data->map[x]);
 		if (y != linelen)
 			return (1);
-		i++;
+		x++;
 	}
 	return (0);
 }
 
-int	ft_firstlastline_check(t_data *data, int line, int i)
+int	ft_firstlastline_check(t_data *data, int x, int y)
 {
-	while (data->map[line][i] != '\0')
+	while (data->map[x][y] != '\0')
 	{
-		if (data->map[line][i] != '1')
+		if (data->map[x][y] != '1')
 			return (1);
-		i++;
+		y++;
 	}
 	return (0);
 }
 
 int	ft_ismap_border(t_data *data)
 {
-	int	i;
+	int	x;
 	int	lastline;
 	int	endlinechar;
 
-	i = 0;
+	x = 0;
 	lastline = 0;
 	endlinechar = ft_strlen(data->map[0]) - 1;
 	while (data->map[lastline] != NULL)
 		lastline++;
-	if (ft_firstlastline_check(data, 0, i))
+	if (ft_firstlastline_check(data, 0, x))
 		return (1);
-	if (ft_firstlastline_check(data, lastline - 1, i))
+	if (ft_firstlastline_check(data, lastline - 1, x))
 		return (1);
-	i = 1;
-	while (i < lastline - 1)
+	x = 1;
+	while (x < lastline - 1)
 	{
-		if (data->map[i][0] != '1' || data->map[i][endlinechar] != '1')
+		if (data->map[x][0] != '1' || data->map[x][endlinechar] != '1')
 			return (1);
-		i++;
+		x++;
 	}
 	return (0);
 }
@@ -70,22 +70,22 @@ int	ft_ismap_border(t_data *data)
 int	is_game_object(t_data *data, char c)
 {
 	int	count;
-	int	i;
+	int	x;
 	int	y;
 
 	count = 0;
-	i = 0;
+	x = 0;
 	y = 0;
-	while (data->map[i] != NULL)
+	while (data->map[x] != NULL)
 	{
-		while (data->map[i][y] != '\0')
+		while (data->map[x][y] != '\0')
 		{
-			if (data->map[i][y] == c)
+			if (data->map[x][y] == c)
 				count++;
 			y++;	
 		}
 		y = 0;
-		i++;
+		x++;
 	}
 	return (count);
 }

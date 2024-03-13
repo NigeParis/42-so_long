@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 11:56:34 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:58:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 void	clean_player_tracks(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->bak_ptr, data->player_pos_x, data->player_pos_y);
-	put_background(data);	
+		data->bak_ptr, data->player_pos_y, data->player_pos_x);
 }
 
 
@@ -25,6 +24,7 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 {
 	if (keysym == key)
 	{
+		printf("\nPressed key: %d -  player x : %d  player y : %d \n", key, data->player_pos_x /100, data->player_pos_y / 100);
 		clean_player_tracks(data);
 		if (dir == 'W' && data->player_pos_x > 0)
 			player_move_west(data);
@@ -36,7 +36,6 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 			player_move_south(data);
 	}
 	printmap(data);
-	printf("\nPressed key: %d -  player x : %d  player y : %d \n", key, data->player_pos_x /100, data->player_pos_y / 100);
 	return (0);
 }	
 

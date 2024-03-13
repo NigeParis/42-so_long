@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 11:57:31 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:37:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ typedef struct s_data
 	void	*exit_ptr;
 	int		player_pos_x;
 	int		player_pos_y;
-	int		move_x_left;
-	int		move_x_right;
-	int		move_y_up;
-	int		move_y_down;
 	int		window_size_x;
 	int		window_size_y;
 	char	**map;
@@ -60,7 +56,7 @@ typedef struct s_data
 int		on_destroy(t_data *data);
 void	game_setup(t_data *data);
 void	get_player_start(t_data * data);
-int		put_background(t_data *data);
+int		put_background(t_data *data, int x, int y);
 int		ft_ismap_rectangle(t_data *data);
 int		ft_firstlastline_check(t_data *data, int line, int i);
 int		ft_ismap_border(t_data *data);
