@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 11:00:21 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:48:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void	get_player_start(t_data *data)
 		{
 			if (data->map[x][y] == 'P')
 			{
-				data->player_pos_y = x * JUMPDOWN;
-				data->player_pos_x = y * JUMPRIGHT;
+				data->player_pos_y = y * JUMPDOWN;
+				data->player_pos_x = x * JUMPRIGHT;
+				data->map[x][y] = '0';
 				break ;
 			}
 			y++;
@@ -97,11 +98,11 @@ int	put_background(t_data *data)
 			if (data->map[(y / 100)][(x / 100)] == 'E')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->exit_ptr, x, y);
-			x += 100;
+			x += JUMPRIGHT;
 		}
 		if (x == data->window_size_x)
 			x = 0;
-		y += 100;	
+		y += JUMPDOWN;
 	}
 	return (1);
 }

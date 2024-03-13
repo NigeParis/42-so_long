@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 09:42:31 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:39:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int	check_map_chars(t_data *data)
 {
-	int	i;
+	int	x;
 	int	y;
 
-	i = 0;
+	x = 0;
 	y = 0;
-	while (data->map[i] != NULL)
+	while (data->map[x] != NULL)
 	{
-		while (data->map[i][y] != '\0')
+		while (data->map[x][y] != '\0')
 		{
-			if (!is_items_known(data->map[i][y], "PCE01"))
+			if (!is_items_known(data->map[x][y], "PCE01"))
 				return (1);
 			y++;
 		}
 		y = 0;
-		i++;
+		x++;
 	}	
 	return (0);
 }

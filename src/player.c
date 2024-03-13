@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 10:53:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:56:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void	clean_player_tracks(t_data *data)
 {
-	data->player_old_x = data->player_pos_x;
-	data->player_old_y = data->player_pos_y;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->bak_ptr, data->player_pos_x, data->player_pos_y);
 	put_background(data);	

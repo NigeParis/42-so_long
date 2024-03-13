@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:57:15 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/12 16:35:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:13:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_ismap_rectangle(t_data *data)
 	while (data->map[i] != NULL)
 	{
 		y = ft_strlen(data->map[i]);
-		printf("-%d:", y);
 		if (y != linelen)
 			return (1);
 		i++;
