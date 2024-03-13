@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/12 18:16:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:54:55 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_data
 	void	*exit_ptr;
 	int		player_pos_x;
 	int		player_pos_y;
+	int		player_old_x;
+	int		player_old_y;
 	int		move_x_left;
 	int		move_x_right;
 	int		move_y_up;
@@ -71,6 +73,11 @@ int		mapcheck(t_data *data);
 int		is_items_known(char c, char *str);
 int		check_map_chars(t_data *data);
 void	get_map_size(t_data *data);
+void	printmap(t_data *data);
+void	player_move_north(t_data *data);
+void	player_move_south(t_data *data);
+void	player_move_east(t_data *data);
+void	player_move_west(t_data *data);
 
 
 #endif

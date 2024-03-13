@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/12 14:40:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 09:42:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ int	check_map_chars(t_data *data)
 	return (0);
 }
 
-
-
-
-
 int	mapcheck(t_data *data)
 {
 	if (ft_ismap_rectangle(data))
@@ -52,4 +48,16 @@ int	mapcheck(t_data *data)
 	if (!is_game_object(data, 'C'))
 		return (ft_putstr_fd("Error Collectables", 1), 1);
 	return (0);
+}
+
+void	printmap(t_data *data)
+{
+	int	x;
+
+	x = 0;
+	while (data->map[x] != NULL)
+	{
+		printf("\n%s", data->map[x]);
+		x++;
+	}
 }

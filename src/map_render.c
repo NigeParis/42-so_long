@@ -6,27 +6,19 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/12 18:36:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:00:21 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	game_setup(t_data *data)
+void	load_tiles(t_data *data)
 {
 	int	posx;
 	int	posy;
 
 	posx = 0;
 	posy = 0;
-	data->player_pos_x = 0;
-	data->player_pos_y = 0;
-	data->move_x_left = JUMPLEFT;
-	data->move_x_right = JUMPRIGHT;
-	data->move_y_up = JUMPUP;
-	data->move_y_down = JUMPDOWN;
-	get_player_start(data);
-	
 	data->bak_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./assets/tile.xpm", &posx, &posy);
 	data->playerup_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -40,9 +32,21 @@ void	game_setup(t_data *data)
 	data->wall_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./assets/wall.xpm", &posx, &posy);
 	data->coll_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/tile.xpm", &posx, &posy);
+			"./assets/coll.xpm", &posx, &posy);
 	data->exit_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/tile.xpm", &posx, &posy);
+			"./assets/exit.xpm", &posx, &posy);
+}
+
+void	game_setup(t_data *data)
+{
+	data->player_pos_x = 0;
+	data->player_pos_y = 0;
+	data->move_x_left = JUMPLEFT;
+	data->move_x_right = JUMPRIGHT;
+	data->move_y_up = JUMPUP;
+	data->move_y_down = JUMPDOWN;
+	get_player_start(data);
+	load_tiles(data);
 }
 
 void	get_player_start(t_data *data)
@@ -81,25 +85,18 @@ int	put_background(t_data *data)
 	{
 		while (x < data->window_size_x)
 		{
-
 			if (data->map[(y / 100)][(x / 100)] == '0')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->bak_ptr, x, y);
-
 			if (data->map[(y / 100)][(x / 100)] == '1')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->wall_ptr, x, y);
-
 			if (data->map[(y / 100)][(x / 100)] == 'C')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->coll_ptr, x, y);
-
 			if (data->map[(y / 100)][(x / 100)] == 'E')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->exit_ptr, x, y);
-
-
-
 			x += 100;
 		}
 		if (x == data->window_size_x)
