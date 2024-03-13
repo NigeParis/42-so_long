@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 15:34:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:37:40 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int	main(void)
 		data.mlx_ptr = mlx_init();
 		if (!data.mlx_ptr)
 			return (1);
-		data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_size_y, data.window_size_x, "So long :)");
+		data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_size_y, \
+			data.window_size_x, "So long :)");
 		if (!data.win_ptr)
 			return (free(data.mlx_ptr), 1);
 		game_setup(&data);

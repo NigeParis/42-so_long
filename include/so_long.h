@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 15:37:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:22:26 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ typedef struct s_data
 	void	*wall_ptr;
 	void	*coll_ptr;
 	void	*exit_ptr;
+	void	*noexit_ptr;
 	int		player_pos_x;
 	int		player_pos_y;
 	int		window_size_x;
 	int		window_size_y;
+	int		exit;
 	char	**map;
 }	t_data;
 
@@ -73,6 +75,11 @@ void	player_move_south(t_data *data);
 void	player_move_east(t_data *data);
 void	player_move_west(t_data *data);
 void	clean_player_tracks(t_data *data);
+void	open_exit(t_data *data);
+void	exit_check_north(t_data *data, int pos_x, int pos_y);
+void	exit_check_south(t_data *data, int pos_x, int pos_y);
+void	exit_check_east(t_data *data, int pos_x, int pos_y);
+void	exit_check_west(t_data *data, int pos_x, int pos_y);
 
 
 

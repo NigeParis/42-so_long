@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 15:38:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:30:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ void	load_tiles(t_data *data)
 			"./assets/coll.xpm", &posx, &posy);
 	data->exit_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./assets/exit.xpm", &posx, &posy);
+	data->noexit_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./assets/noexit.xpm", &posx, &posy);
 }
 
 void	game_setup(t_data *data)
 {
 	data->player_pos_x = 0;
 	data->player_pos_y = 0;
+	data->exit = 0;
 	get_player_start(data);
 	load_tiles(data);
 	put_background(data, 0, 0);
@@ -90,7 +93,7 @@ int	put_background(t_data *data, int x, int y)
 					data->coll_ptr, y, x);
 			if (data->map[(x / 100)][(y / 100)] == 'E')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->exit_ptr, y, x);
+					data->noexit_ptr, y, x);
 			y += JUMPRIGHT;
 		}
 		x += JUMPDOWN;

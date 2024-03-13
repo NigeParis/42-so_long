@@ -16,8 +16,9 @@ CC=cc
 SRC_DIR=
 OBJ_DIR=
 INCLUDE= -I/usr/include -Imlx
-SRC= ./src/main.c  ./src/player.c ./src/player_move.c ./src/get_next_line.c ./src/get_next_line_utils.c ./src/mapcheck_utils.c ./src/mapcheck.c ./src/map_render.c
-
+SRC= ./src/main.c   ./src/player.c ./src/player_move.c ./src/get_next_line.c \
+	 ./src/get_next_line_utils.c ./src/mapcheck_utils.c ./src/mapcheck.c \
+	 ./src/map_render.c ./src/map_exit.c
 HEADER= 
 ###############################################################################
 ## RULES
