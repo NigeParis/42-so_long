@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 17:30:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:02:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,9 @@ void	load_tiles(t_data *data)
 			"./assets/noexit.xpm", &posx, &posy);
 }
 
-void	game_setup(t_data *data)
-{
-	data->player_pos_x = 0;
-	data->player_pos_y = 0;
-	data->exit = 0;
-	get_player_start(data);
-	load_tiles(data);
-	put_background(data, 0, 0);
 
-}
 
-void	get_player_start(t_data *data)
+void	get_player_map_start_pos(t_data *data)
 {
 	int	x;
 	int	y;
@@ -75,7 +66,7 @@ void	get_player_start(t_data *data)
 	}
 }
 
-int	put_background(t_data *data, int x, int y)
+int	put_map_background(t_data *data, int x, int y)
 {
 	while (x < data->window_size_x)
 	{
@@ -91,12 +82,31 @@ int	put_background(t_data *data, int x, int y)
 			if (data->map[(x / 100)][(y / 100)] == 'C')				
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->coll_ptr, y, x);
-			if (data->map[(x / 100)][(y / 100)] == 'E')				
+			if ((data->map[(x / 100)][(y / 100)] == 'E') && (data->exit == 0))
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->noexit_ptr, y, x);
+			if ((data->map[(x / 100)][(y / 100)] == 'E') && (data-> exit == 1))
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+					data->exit_ptr, y, x);
 			y += JUMPRIGHT;
 		}
 		x += JUMPDOWN;
 	}
 	return (1);
+}
+
+void	get_map_size(t_data *data)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	y = (ft_strlen(data->map[0])) * JUMPRIGHT;
+	while (data->map[i] != NULL)
+		i++;
+	x = i * JUMPDOWN;
+
+	data->window_size_x = x;
+	data->window_size_y = y;
 }

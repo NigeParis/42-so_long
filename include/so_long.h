@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 18:22:26 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:50:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <X11/X.h>
@@ -56,9 +57,7 @@ typedef struct s_data
 # endif
 
 int		on_destroy(t_data *data);
-void	game_setup(t_data *data);
-void	get_player_start(t_data * data);
-int		put_background(t_data *data, int x, int y);
+int		put_map_background(t_data *data, int x, int y);
 int		ft_ismap_rectangle(t_data *data);
 int		ft_firstlastline_check(t_data *data, int line, int i);
 int		ft_ismap_border(t_data *data);
@@ -68,19 +67,22 @@ int		is_game_object(t_data *data, char c);
 int		mapcheck(t_data *data);
 int		is_items_known(char c, char *str);
 int		check_map_chars(t_data *data);
+int		check_mapfile(t_data *data, int nb_args, char *file);
 void	get_map_size(t_data *data);
+void	get_player_map_start_pos(t_data * data);
 void	printmap(t_data *data);
 void	player_move_north(t_data *data);
 void	player_move_south(t_data *data);
 void	player_move_east(t_data *data);
+void	game_setup(t_data *data);
 void	player_move_west(t_data *data);
 void	clean_player_tracks(t_data *data);
 void	open_exit(t_data *data);
 void	exit_check_north(t_data *data, int pos_x, int pos_y);
-void	exit_check_south(t_data *data, int pos_x, int pos_y);
 void	exit_check_east(t_data *data, int pos_x, int pos_y);
+void	exit_check_south(t_data *data, int pos_x, int pos_y);
 void	exit_check_west(t_data *data, int pos_x, int pos_y);
-
-
+void	load_tiles(t_data *data);
+char	**get_map(char *file);
 
 #endif

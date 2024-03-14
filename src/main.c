@@ -6,11 +6,22 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 17:37:40 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:12:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	game_setup(t_data *data)
+{
+	data->player_pos_x = 0;
+	data->player_pos_y = 0;
+	data->exit = 0;
+	get_player_map_start_pos(data);
+	load_tiles(data);
+	put_map_background(data, 0, 0);
+
+}
 
 int	on_destroy(t_data *data)
 {
@@ -22,18 +33,17 @@ int	on_destroy(t_data *data)
 }
 
 
-char	**get_map(void)
+char	**get_map(char *file)
 {
 	int		fd;
 	char	*line;
 	char	*tmp;
 	char	*tab;
-	char	**map;
 
 	tab = ft_strdup("");
-	fd = open("map/map1.ber", O_RDONLY);
-	if (!fd)
-		return (write(1, "error", 5), NULL);
+	fd = open(file, O_RDONLY);
+	if (!fd || fd == -1)
+		return (write(1, "Error file.ber", 14), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -44,38 +54,26 @@ char	**get_map(void)
 		free(line);
 		line = get_next_line(fd);
 	}
-	map = ft_split(tab, '\n');
-	if (line)
-		free(line);
 	close(fd);
-	return (free(tmp), map);
-}
-
-void	get_map_size(t_data *data)
-{
-	int	x;
-	int	y;
-	int	i;
-
-	i = 0;
-	y = (ft_strlen(data->map[0])) * JUMPRIGHT;
-	while (data->map[i] != NULL)
-		i++;
-	x = i * JUMPDOWN;
-
-	data->window_size_x = x;
-	data->window_size_y = y;
+	if (line)
+	{
+		if (ft_strlen(line) <= 1)
+			return (free(line), NULL);
+		free(line);
+	}
+	return (ft_split(tab, '\n'));
 }
 
 
-int	main(void)
+
+
+
+
+int	main(int argc, char *argv[])
 {
 	t_data	data;
-	int		error;
 
-	data.map = get_map();
-	error = mapcheck(&data);
-	if (!error)
+	if (argc == 2 && check_mapfile(&data, argc, argv[1]))
 	{
 		get_map_size(&data);
 		data.mlx_ptr = mlx_init();

@@ -27,7 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Creating FILE .......\n"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) ./libft.a $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) ./libft.a ./libftprintf.a $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 	@echo "COMPILE all c files to .o FILES .......\n"

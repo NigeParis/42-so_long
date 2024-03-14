@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:17:44 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 18:18:50 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:08:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	open_exit(t_data *data)
 {
-	if ((!is_game_object(data, 'C'))
-		&& (data->exit_ptr != data->noexit_ptr))
+	if ((!is_game_object(data, 'C')) && (data->exit == 0))
 	{
-		data->noexit_ptr = data->exit_ptr;
-		put_background(data, 0, 0);
+		data->exit = 1;
+		put_map_background(data, 0, 0);
 	}	
 }
 
