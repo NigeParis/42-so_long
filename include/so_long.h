@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 13:50:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:44:01 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int		on_keypress(int keysym, t_data *data);
 int		is_game_object(t_data *data, char c);
 int		mapcheck(t_data *data);
 int		is_items_known(char c, char *str);
-int		check_map_chars(t_data *data);
-int		check_mapfile(t_data *data, int nb_args, char *file);
+int		check_map_items(t_data *data);
+int		check_mapfile(t_data *data, int nb_args, char *file, char *tmp);
 void	get_map_size(t_data *data);
 void	get_player_map_start_pos(t_data * data);
 void	printmap(t_data *data);
@@ -83,6 +83,6 @@ void	exit_check_east(t_data *data, int pos_x, int pos_y);
 void	exit_check_south(t_data *data, int pos_x, int pos_y);
 void	exit_check_west(t_data *data, int pos_x, int pos_y);
 void	load_tiles(t_data *data);
-char	**get_map(char *file);
+char	**get_map(char *file, int fd, char *tmp, char **map);
 
 #endif

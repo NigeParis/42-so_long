@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 13:12:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:08:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@ void	game_setup(t_data *data)
 	data->player_pos_y = 0;
 	data->exit = 0;
 	get_player_map_start_pos(data);
-	load_tiles(data);
-	put_map_background(data, 0, 0);
 
 }
 
 int	on_destroy(t_data *data)
 {
+	mlx_destroy_image(data->mlx_ptr, data->bak_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->playerup_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->playerdown_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->playerleft_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->playerright_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->wall_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->coll_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->exit_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->noexit_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
@@ -33,21 +40,24 @@ int	on_destroy(t_data *data)
 }
 
 
-char	**get_map(char *file)
+
+
+
+
+char	**get_map(char *file, int fd, char *tmp, char **map)
 {
-	int		fd;
 	char	*line;
-	char	*tmp;
 	char	*tab;
+//	char	**map;
 
 	tab = ft_strdup("");
 	fd = open(file, O_RDONLY);
 	if (!fd || fd == -1)
-		return (write(1, "Error file.ber", 14), NULL);
+		return (ft_putstr_fd("Error\nfile.ber\n", 1), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!line || line[0] == '\n')
+		if (!line || line[0] == '\n') 
 			break ;
 		tmp = ft_strjoin(tab, line);
 		tab = tmp;
@@ -61,20 +71,22 @@ char	**get_map(char *file)
 			return (free(line), NULL);
 		free(line);
 	}
-	return (ft_split(tab, '\n'));
+	map = ft_split(tab, '\n');
+	free(tab);
+	return (map);
 }
-
-
-
-
-
 
 int	main(int argc, char *argv[])
 {
 	t_data	data;
+	char	*tmp;
 
-	if (argc == 2 && check_mapfile(&data, argc, argv[1]))
+	tmp = NULL;
+	if (argc == 2)
 	{
+		if (!check_mapfile(&data, argc, argv[1], tmp))
+			return (0);
+		free(tmp);
 		get_map_size(&data);
 		data.mlx_ptr = mlx_init();
 		if (!data.mlx_ptr)
@@ -84,6 +96,8 @@ int	main(int argc, char *argv[])
 		if (!data.win_ptr)
 			return (free(data.mlx_ptr), 1);
 		game_setup(&data);
+		load_tiles(&data);
+		put_map_background(&data, 0, 0);
 		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
 			data.playerup_ptr, data.player_pos_y, data.player_pos_x);
 		mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
@@ -91,5 +105,7 @@ int	main(int argc, char *argv[])
 			&on_destroy, &data);
 		mlx_loop(data.mlx_ptr);
 	}
+	else
+		ft_putstr_fd("Error\narguments", 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:53:12 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 18:18:30 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:55:48 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	player_move_east(t_data *data)
 	pos_y = (data->player_pos_y / 100) + 1;
 	pos_x = (data->player_pos_x / 100);
 	data->map[data->player_pos_x / 100][data->player_pos_y / 100] = '0';
-	open_exit(data);
 	if (data->map[pos_x][pos_y] != '1')
 	{
 		exit_check_east(data, pos_x, pos_y);
@@ -73,7 +72,6 @@ void	player_move_west(t_data *data)
 	pos_y = (data->player_pos_y / 100) - 1;
 	pos_x = (data->player_pos_x / 100);
 	data->map[data->player_pos_x / 100][data->player_pos_y / 100] = '0';
-	open_exit(data);
 	if (data->map[pos_x][pos_y] != '1')
 	{
 		exit_check_west(data, pos_x, pos_y);
