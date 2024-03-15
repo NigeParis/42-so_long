@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/13 17:39:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:59:24 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 
 int	on_keypress(int keysym, t_data *data)
 {
-		
 	if (keysym == 65363 || keysym == 's')
 	{
 		keysym = 's';
@@ -63,6 +62,8 @@ int	on_keypress(int keysym, t_data *data)
 		keysym = 'z';
 		keymove(keysym, data, 'z', 'S');
 	}
+	if (keysym == 65307)
+		on_destroy(data);	
 	return (0);
 }
  

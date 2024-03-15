@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 10:44:20 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:13:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_data
 	int		window_size_x;
 	int		window_size_y;
 	int		exit;
+	int		screen_width;
+	int		screen_height;
 	char	**map;
 }	t_data;
 
@@ -68,6 +70,7 @@ int		mapcheck(t_data *data);
 int		is_items_known(char c, char *str);
 int		check_map_items(t_data *data);
 int		check_mapfile(t_data *data, int nb_args, char *file, char *tmp);
+int		checkmap_size(t_data *data);
 void	get_map_size(t_data *data);
 void	get_player_map_start_pos(t_data * data);
 void	printmap(t_data *data);
@@ -83,8 +86,9 @@ void	exit_check_east(t_data *data, int pos_x, int pos_y);
 void	exit_check_south(t_data *data, int pos_x, int pos_y);
 void	exit_check_west(t_data *data, int pos_x, int pos_y);
 void	load_tiles(t_data *data);
-char	**get_map(char *file, int fd, char *tmp, char **map);
 void	ft_free_tab_chars(char str[]);
+void	ft_read_all_file(int fd);
+char	**get_map(char *file, int fd, char *tmp, char **map);
 
 
 #endif
