@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 18:44:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:44:20 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ void	exit_check_south(t_data *data, int pos_x, int pos_y);
 void	exit_check_west(t_data *data, int pos_x, int pos_y);
 void	load_tiles(t_data *data);
 char	**get_map(char *file, int fd, char *tmp, char **map);
+void	ft_free_tab_chars(char str[]);
+
 
 #endif

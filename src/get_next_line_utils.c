@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 06:03:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/12 13:40:50 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:57:35 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (0);
 	if (!s1)
 		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	len = (ft_strlen(s1) + ft_strlen(s2));
 	result = malloc((len * sizeof(char)) + 1);
 	if (!result)

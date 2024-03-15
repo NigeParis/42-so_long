@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 19:08:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:59:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,16 @@ int	on_destroy(t_data *data)
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	ft_free_double_tab(data->map);
 	exit(0);
 	return (0);
 }
 
-
+void	ft_free_tab_chars(char str[])
+{
+	if (str)
+		free(str);
+}
 
 
 
@@ -48,9 +53,8 @@ char	**get_map(char *file, int fd, char *tmp, char **map)
 {
 	char	*line;
 	char	*tab;
-//	char	**map;
 
-	tab = ft_strdup("");
+	tab = NULL;
 	fd = open(file, O_RDONLY);
 	if (!fd || fd == -1)
 		return (ft_putstr_fd("Error\nfile.ber\n", 1), NULL);
@@ -61,18 +65,15 @@ char	**get_map(char *file, int fd, char *tmp, char **map)
 			break ;
 		tmp = ft_strjoin(tab, line);
 		tab = tmp;
-		free(line);
+		ft_free_tab_chars(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (line)
-	{
-		if (ft_strlen(line) <= 1)
-			return (free(line), NULL);
-		free(line);
-	}
+	if (line && ft_strlen(line) <= 1)
+		return (free(line), NULL);
 	map = ft_split(tab, '\n');
-	free(tab);
+	ft_free_tab_chars(line);
+	ft_free_tab_chars(tab);
 	return (map);
 }
 
@@ -82,30 +83,27 @@ int	main(int argc, char *argv[])
 	char	*tmp;
 
 	tmp = NULL;
-	if (argc == 2)
-	{
-		if (!check_mapfile(&data, argc, argv[1], tmp))
-			return (0);
-		free(tmp);
-		get_map_size(&data);
-		data.mlx_ptr = mlx_init();
-		if (!data.mlx_ptr)
-			return (1);
-		data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_size_y, \
-			data.window_size_x, "So long :)");
-		if (!data.win_ptr)
-			return (free(data.mlx_ptr), 1);
-		game_setup(&data);
-		load_tiles(&data);
-		put_map_background(&data, 0, 0);
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-			data.playerup_ptr, data.player_pos_y, data.player_pos_x);
-		mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
-		mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
-			&on_destroy, &data);
-		mlx_loop(data.mlx_ptr);
-	}
-	else
-		ft_putstr_fd("Error\narguments", 1);
+	if (argc != 2)
+		return (ft_putstr_fd("Error\narguments", 1), 0);
+	if (!check_mapfile(&data, argc, argv[1], tmp))
+		return (0);
+	ft_free_tab_chars(tmp);
+	get_map_size(&data);
+	data.mlx_ptr = mlx_init();
+	if (!data.mlx_ptr)
+		return (1);
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_size_y, \
+		data.window_size_x, "So long :)");
+	if (!data.win_ptr)
+		return (free(data.mlx_ptr), 1);
+	game_setup(&data);
+	load_tiles(&data);
+	put_map_background(&data, 0, 0);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
+		data.playerup_ptr, data.player_pos_y, data.player_pos_x);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
+	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
+		&on_destroy, &data);
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }

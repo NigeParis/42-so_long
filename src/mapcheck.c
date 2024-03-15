@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 18:45:44 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:53:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_mapfile(t_data *data, int nb_args, char *file, char *tmp)
 {
 	int		error;
 	char	**map;
-	
+
 	map = NULL;
 	error = 0;
 	if (nb_args == 2)
