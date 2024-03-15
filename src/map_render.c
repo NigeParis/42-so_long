@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 13:02:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:10:10 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	load_tiles(t_data *data)
 	data->noexit_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./assets/noexit.xpm", &posx, &posy);
 }
-
-
 
 void	get_player_map_start_pos(t_data *data)
 {
@@ -73,13 +71,13 @@ int	put_map_background(t_data *data, int x, int y)
 		y = 0;
 		while (y < data->window_size_y)
 		{
-			if (data->map[(x / 100)][(y / 100)] == '0')				
+			if (data->map[(x / 100)][(y / 100)] == '0')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->bak_ptr, y, x);
-			if (data->map[(x / 100)][(y / 100)] == '1')				
+			if (data->map[(x / 100)][(y / 100)] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->wall_ptr, y, x);
-			if (data->map[(x / 100)][(y / 100)] == 'C')				
+			if (data->map[(x / 100)][(y / 100)] == 'C')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->coll_ptr, y, x);
 			if ((data->map[(x / 100)][(y / 100)] == 'E') && (data->exit == 0))
@@ -106,7 +104,6 @@ void	get_map_size(t_data *data)
 	while (data->map[i] != NULL)
 		i++;
 	x = i * JUMPDOWN;
-
 	data->window_size_x = x;
 	data->window_size_y = y;
 }

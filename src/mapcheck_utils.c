@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:57:15 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/14 10:18:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:06:54 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	is_game_object(t_data *data, char c)
 		{
 			if (data->map[x][y] == c)
 				count++;
-			y++;	
+			y++;
 		}
 		y = 0;
 		x++;

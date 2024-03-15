@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 18:17:44 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:49:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:54:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	open_exit(t_data *data)
 
 void	exit_check_north(t_data *data, int pos_x, int pos_y)
 {
-
 	data->player_pos_x += JUMPUP;
 	data->nbr_steps++;
 	if (data->map[pos_x][pos_y] == 'E')
@@ -43,12 +42,10 @@ void	exit_check_north(t_data *data, int pos_x, int pos_y)
 	if (data->map[pos_x][pos_y] == 'C')
 		data->map[pos_x][pos_y] = '0';
 	open_exit(data);
-
 }
 
 void	exit_check_south(t_data *data, int pos_x, int pos_y)
 {
-
 	data->player_pos_x += JUMPDOWN;
 	data->nbr_steps++;
 	if (data->map[pos_x][pos_y] == 'E')
@@ -68,12 +65,10 @@ void	exit_check_south(t_data *data, int pos_x, int pos_y)
 	if (data->map[pos_x][pos_y] == 'C')
 		data->map[pos_x][pos_y] = '0';
 	open_exit(data);
-
 }
 
 void	exit_check_east(t_data *data, int pos_x, int pos_y)
 {
-
 	data->player_pos_y += JUMPRIGHT;
 	data->nbr_steps++;
 	if (data->map[pos_x][pos_y] == 'E')
@@ -93,12 +88,10 @@ void	exit_check_east(t_data *data, int pos_x, int pos_y)
 	if (data->map[pos_x][pos_y] == 'C')
 		data->map[pos_x][pos_y] = '0';
 	open_exit(data);
-
 }
 
 void	exit_check_west(t_data *data, int pos_x, int pos_y)
 {
-
 	data->player_pos_y += JUMPLEFT;
 	data->nbr_steps++;
 	if (data->map[pos_x][pos_y] == 'E')
@@ -118,5 +111,4 @@ void	exit_check_west(t_data *data, int pos_x, int pos_y)
 	if (data->map[pos_x][pos_y] == 'C')
 		data->map[pos_x][pos_y] = '0';
 	open_exit(data);
-
 }

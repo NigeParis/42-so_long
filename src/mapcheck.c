@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:12:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:04:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	mapcheck(t_data *data)
 		return (ft_putstr_fd("Error\nExit", 1), 1);
 	if (!is_game_object(data, 'C'))
 		return (ft_putstr_fd("Error\nCollectables", 1), 1);
-
 	return (0);
 }
 
@@ -99,7 +98,6 @@ int	checkmap_size(t_data *data)
 	{
 		ft_printf("Error\nmap too big");
 		return (1);
-
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:53:12 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:29:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:02:10 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	player_move_north(t_data *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->playerup_ptr, data->player_pos_y, data->player_pos_x);
 }
-
-
 
 void	player_move_south(t_data *data)
 {
