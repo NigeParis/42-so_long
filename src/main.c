@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:15:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:38:42 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	game_setup(t_data *data)
 {
 	data->player_pos_x = 0;
 	data->player_pos_y = 0;
+	data->nbr_steps = 0;
 	data->exit = 0;
 	get_player_map_start_pos(data);
 
@@ -61,7 +62,6 @@ int	main(int argc, char *argv[])
 	if (!check_mapfile(&data, argc, argv[1], tmp))
 	{
 		ft_free_tab_chars(tmp);
-		ft_putstr_fd(" dededededededd", 1);
 		return (0);
 	}
 	ft_free_tab_chars(tmp);

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 15:59:24 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:41:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 {
 	if (keysym == key)
 	{
-		printf("\nPressed key: %d -  player x : %d  player y : %d \n", key, data->player_pos_x /100, data->player_pos_y / 100);
 		clean_player_tracks(data);
 		if (dir == 'W' && data->player_pos_x > 0)
 			player_move_west(data);
@@ -35,7 +34,9 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 		else if (dir == 'S' && data->player_pos_y < (data->window_size_y - JUMPDOWN))
 			player_move_south(data);
 	}
-	printmap(data);
+	ft_printf("\nsteps taken : %d", data->nbr_steps);
+//	printf("\nPressed key: %d -  player x : %d  player y : %d \n", key, data->player_pos_x /100, data->player_pos_y / 100);
+//	printmap(data);
 	return (0);
 }	
 

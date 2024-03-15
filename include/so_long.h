@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:13:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:38:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	int		exit;
 	int		screen_width;
 	int		screen_height;
+	int		nbr_steps;
 	char	**map;
 }	t_data;
 
