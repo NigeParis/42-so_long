@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 16:15:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 18:07:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,31 @@
 void	clean_player_tracks(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->bak_ptr, data->player_pos_y, data->player_pos_x);
+		data->bak_ptr, data->player_pos_y, data->player_pos_x);	
+}
+
+void	clean_display_tracks(t_data *data)
+{
+	char	*str;
+
+	str = ft_itoa(data->nbr_steps);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->bak_ptr, 100, 100);
+	mlx_string_put(data->mlx_ptr, data->win_ptr,
+		120, 135, 10, "Steps taken");
+	mlx_string_put(data->mlx_ptr, data->win_ptr,
+		150, 150, 10, str);
+	ft_free_tab_chars(str);
 }
 
 int	keymove(int keysym, t_data *data, char key, char dir)
 {
 	if (keysym == key)
-	{
+	{		
 		clean_player_tracks(data);
+		clean_display_tracks(data);
+
+
 		if (dir == 'W' && data->player_pos_x > 0)
 			player_move_west(data);
 		else if (dir == 'E' && data->player_pos_x < \
@@ -33,7 +50,11 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 		else if (dir == 'S' && data->player_pos_y < \
 			(data->window_size_y - JUMPDOWN))
 			player_move_south(data);
-	}
+
+	}	
+	if (data->player_pos_x != 100 || data->player_pos_y != 100)
+		clean_display_tracks(data);
+
 	ft_printf("\nsteps taken : %d", data->nbr_steps);
 	return (0);
 }	
