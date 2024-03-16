@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 18:04:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:01:03 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_mapfile(t_data *data, int nb_args, char *file, char *tmp)
 		data->map = get_map(file, 0, tmp, map);
 		ft_free_double_tab(map);
 		if (!data->map)
-			return (0);
+			return (ft_putstr_fd("Error\nMap empty", 1), 0);
 		if (!data->map[0])
 		{
 			return (ft_putstr_fd("Error\nmap empty", 1), 0);

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 13:46:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:03:07 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	load_tiles(t_data *data);
 void	ft_free_tab_chars(char str[]);
 void	ft_read_all_file(int fd);
 char	**get_map(char *file, int fd, char *tmp, char **map);
+char	*get_map_one_line(char *line, int fd, char *tmp);
 
 
 #endif

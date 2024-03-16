@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 14:18:17 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:41:05 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,38 @@ int	on_destroy(t_data *data)
 	return (0);
 }
 
+int	load_game(t_data *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		return (1);
+	data->win_ptr = 0;
+	load_tiles(data);
+	if (checkmap_size(data))
+		return (on_destroy(data), 1);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->window_size_y, \
+		data->window_size_x, "So long :)");
+	if (!data->win_ptr)
+		return (on_destroy(data), 1);
+	game_setup(data);
+	put_map_background(data, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->playerup_ptr, data->player_pos_y, data->player_pos_x);
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &on_keypress, data);
+	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask,
+		&on_destroy, data);
+	mlx_loop(data->mlx_ptr);
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	data;
 	char	*tmp;
+	int		error;
 
 	tmp = NULL;
+	error = 0;
 	if (argc != 2)
 		return (ft_putstr_fd("Error\narguments", 1), 0);
 	if (!check_mapfile(&data, argc, argv[1], tmp))
@@ -93,24 +119,6 @@ int	main(int argc, char *argv[])
 	}
 	ft_free_tab_chars(tmp);
 	get_map_size(&data);
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
-		return (1);
-	data.win_ptr = 0;
-	load_tiles(&data);
-	if (checkmap_size(&data))
-		return (on_destroy(&data), 1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_size_y, \
-		data.window_size_x, "So long :)");
-	if (!data.win_ptr)
-		return (on_destroy(&data), 1);
-	game_setup(&data);
-	put_map_background(&data, 0, 0);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
-		data.playerup_ptr, data.player_pos_y, data.player_pos_x);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
-	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
-		&on_destroy, &data);
-	mlx_loop(data.mlx_ptr);
-	return (0);
+	error = load_game(&data);
+	return (error);
 }
