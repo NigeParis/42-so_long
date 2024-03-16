@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:09:55 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 14:56:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:44:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,8 @@ char	*get_map_one_line(char *line, int fd, char *tmp)
 		ft_free_tab_chars(line);
 		line = get_next_line(fd);
 	}
-
 	return (tab);
 }
-
-
-
-
-
-
-
-
 
 char	**get_map(char *file, int fd, char *tmp, char **map)
 {
@@ -91,7 +82,6 @@ char	**get_map(char *file, int fd, char *tmp, char **map)
 	fd = open(file, O_RDONLY);
 	if (!fd || fd == -1)
 		return (ft_putstr_fd("Error\nfile.ber\n", 1), NULL);
-
 	tab = get_map_one_line(line, fd, tmp);
 	if (!tab)
 		return (NULL);
@@ -103,4 +93,3 @@ char	**get_map(char *file, int fd, char *tmp, char **map)
 	ft_free_tab_chars(tab);
 	return (map);
 }
-
