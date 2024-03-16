@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:09:55 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:14:58 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:44:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,23 @@ void	ft_read_all_file(int fd)
 		free(line);
 	}
 }
+
+int	checkfile_exits(char *file, char *type_image)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (!fd || fd == -1)
+	{
+		ft_printf("Error\n%s missing %s\n", type_image, file);
+		close(fd);
+		return (1);
+	}
+	close (fd);
+	return (0);
+}
+
+
 
 char	**get_map(char *file, int fd, char *tmp, char **map)
 {

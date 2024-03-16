@@ -6,11 +6,37 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 17:38:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:18:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int	list_file_errors(void)
+{
+	int	errors;
+
+	errors = 0;
+	if (checkfile_exits("./assets/tile.xpm", "Tile image"))
+		errors++;
+	if (checkfile_exits("./assets/up.xpm", "Player up image"))
+		errors++;
+	if (checkfile_exits("./assets/down.xpm", "Player down image"))
+		errors++;
+	if (checkfile_exits("./assets/left.xpm", "Player left image"))
+		errors++;
+	if (checkfile_exits("./assets/right.xpm", "Player right image"))
+		errors++;
+	if (checkfile_exits("./assets/wall.xpm", "Wall image"))
+		errors++;
+	if (checkfile_exits("./assets/coll.xpm", "Collectable image"))
+		errors++;
+	if (checkfile_exits("./assets/exit.xpm", "Exit image"))
+		errors++;
+	if (checkfile_exits("./assets/noexit.xpm", "No exit image"))
+		errors++;
+	return (errors);
+}
 
 void	game_setup(t_data *data)
 {
@@ -18,8 +44,9 @@ void	game_setup(t_data *data)
 	data->player_pos_y = 0;
 	data->nbr_steps = 0;
 	data->exit = 0;
+	if (list_file_errors())
+		on_destroy(data);
 	get_player_map_start_pos(data);
-
 }
 
 int	on_destroy(t_data *data)
