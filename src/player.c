@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/15 18:00:34 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:15:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ int	on_keypress(int keysym, t_data *data)
 	}
 	if (keysym == 65307)
 		on_destroy(data);
+	if (keysym == 'p')
+		printmap(data);
 	return (0);
 }
