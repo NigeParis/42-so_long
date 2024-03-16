@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 15:41:05 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:33:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	load_game(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
-		return (1);
+		return (ft_free_double_tab(data->map), 1);
 	data->win_ptr = 0;
 	load_tiles(data);
 	if (checkmap_size(data))
