@@ -83,3 +83,27 @@ void	get_mapcopy_size(char** map, t_point *size)
 	}
 	size->y = y;
 }
+
+
+int	check_file_ext(char *file,  char *ext)
+{
+	int len;
+	int len_ext;
+	int	i;
+
+	i = 0;
+	if (!file || !ext)
+		return (1);	
+	if (file[0] == '\0' || ext[0] == '\0')
+		return (1);
+	len_ext = ft_strlen(ext) + 1;
+	len = ft_strlen(file) + 1;
+	printf("\n%d - %d      ", len, len_ext);
+	while (file[((len - len_ext) + i)] != '\0')
+	{
+		if ((file[((len - len_ext) + i)]) != ext[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
