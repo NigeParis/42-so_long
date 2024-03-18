@@ -18,7 +18,8 @@ OBJ_DIR=
 INCLUDE= -I/usr/include -Imlx
 SRC= ./src/main.c   ./src/player.c ./src/player_move.c ./src/get_next_line.c \
 	 ./src/get_next_line_utils.c ./src/mapcheck_utils.c ./src/mapcheck.c \
-	 ./src/map_render.c ./src/map_exit.c ./src/map_get.c
+	 ./src/map_render.c ./src/map_exit.c ./src/map_get.c ./src/map_get_utils.c\
+	 ./src/map_path_check.c
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
 HEADER=

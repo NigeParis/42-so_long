@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 16:02:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:13:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,32 @@ int	check_map_items(t_data *data)
 	return (0);
 }
 
+int	is_map_path(char **mapcopy)
+{
+	t_point size;
+	t_point begin;
+	t_point *ptr_begin;
+	t_point	*ptr_size;
+	
+	ptr_begin = &begin;
+	ptr_size = &size;
+	get_map_start_pos(mapcopy, ptr_begin);
+	get_mapcopy_size(mapcopy, ptr_size);
+	
+	printf("\n                             b_x :%d, b_y :%d   s_x :%d, s_y :%d", ptr_begin->x, ptr_begin->y, ptr_size->x, ptr_size->y );
+
+
+//	flood_fill(mapcopy, &size, &begin);
+	return (0);	
+}
+
+
+
+
 int	mapcheck(t_data *data)
 {
+	char **mapcopy;
+	
 	if (ft_ismap_rectangle(data))
 		return (ft_putstr_fd("Error\nnot a Rectangle", 1), 1);
 	if (ft_ismap_border(data))
@@ -47,20 +71,31 @@ int	mapcheck(t_data *data)
 		return (ft_putstr_fd("Error\nExit", 1), 1);
 	if (!is_game_object(data, 'C'))
 		return (ft_putstr_fd("Error\nCollectables", 1), 1);
+	
+	mapcopy = ft_mapdup(data);
+	printmap(mapcopy);
+	if (is_map_path(mapcopy))
+		return (ft_putstr_fd("Error\nno path possible", 1), 1);
+
+
+	
+		
 	return (0);
 }
 
-void	printmap(t_data *data)
+void	printmap(char **map)
 {
 	int	x;
 
 	x = 0;
-	while (data->map[x] != NULL)
+	while (map && map[x] != NULL)
 	{
-		ft_printf("\n%s", data->map[x]);
+		ft_printf("\n%s", map[x]);
 		x++;
 	}
 }
+
+
 
 int	check_mapfile(t_data *data, int nb_args, char *file, char *tmp)
 {

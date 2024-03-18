@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/18 10:31:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:02:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 	if (keysym == key)
 	{		
 		clean_player_tracks(data);
-		clean_display_tracks(data);
-
 
 		if (dir == 'W' && data->player_pos_x > 0)
 			player_move_west(data);
@@ -52,8 +50,7 @@ int	keymove(int keysym, t_data *data, char key, char dir)
 			player_move_south(data);
 
 	}	
-	if (data->player_pos_x != 100 || data->player_pos_y != 100)
-		clean_display_tracks(data);
+	clean_display_tracks(data);
 
 	ft_printf("\nsteps taken : %d", data->nbr_steps);
 	return (0);
@@ -84,6 +81,6 @@ int	on_keypress(int keysym, t_data *data)
 	if (keysym == 65307)
 		on_destroy(data);
 	if (keysym == 'p')
-		printmap(data);
+		printmap(data->map);
 	return (0);
 }

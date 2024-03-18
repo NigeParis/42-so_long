@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 17:19:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:09:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	game_setup(t_data *data)
 	if (list_file_errors())
 		on_destroy(data);
 	get_player_map_start_pos(data);
+		
 }
 
 int	on_destroy(t_data *data)
@@ -119,6 +120,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	ft_free_tab_chars(tmp);
+
+
 	get_map_size(&data);
 	error = load_game(&data);
 	return (error);

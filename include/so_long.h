@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:25:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 15:03:07 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:09:23 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ typedef struct s_data
 	char	**map;
 }	t_data;
 
-
+typedef struct  s_point
+{
+    int x;
+    int y;
+}   t_point;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -76,7 +80,7 @@ int		checkfile_exits(char *file, char *type_image);
 int		list_file_errors(void);
 void	get_map_size(t_data *data);
 void	get_player_map_start_pos(t_data *data);
-void	printmap(t_data *data);
+void	printmap(char **map);
 void	player_move_north(t_data *data);
 void	player_move_south(t_data *data);
 void	player_move_east(t_data *data);
@@ -93,6 +97,10 @@ void	ft_free_tab_chars(char str[]);
 void	ft_read_all_file(int fd);
 char	**get_map(char *file, int fd, char *tmp, char **map);
 char	*get_map_one_line(char *line, int fd, char *tmp);
+char	**ft_mapdup(t_data *data);
+void  	flood_fill(char **tab, t_point *size, t_point *begin);
+void	get_map_start_pos(char** map, t_point *begin);
+void	get_mapcopy_size(char** map, t_point *size);
 
 
 #endif
