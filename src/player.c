@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/16 18:07:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:31:56 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	clean_player_tracks(t_data *data)
 void	clean_display_tracks(t_data *data)
 {
 	char	*str;
-
+	
 	str = ft_itoa(data->nbr_steps);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->bak_ptr, 100, 100);
+		data->wall_ptr, 0, 0);
 	mlx_string_put(data->mlx_ptr, data->win_ptr,
-		120, 135, 10, "Steps taken");
+		JUMPDOWN / 6, (JUMPDOWN / 2) + 2, 0xFFFFFF, " Steps:");
 	mlx_string_put(data->mlx_ptr, data->win_ptr,
-		150, 150, 10, str);
+		JUMPDOWN - (JUMPDOWN / 3) - 6,  (JUMPDOWN / 2) + 2,  0xFFFF00, str);
 	ft_free_tab_chars(str);
 }
 
