@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:40:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/18 15:13:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:33:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,46 @@ int	check_map_items(t_data *data)
 	return (0);
 }
 
+
+int	ft_isupper(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+	{
+		return(1);	
+	}
+	return (0);
+}
+
+
+
+
+int	is_uppercase_in_map(char **mapcopy)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (mapcopy && mapcopy[y])
+	{
+		while (mapcopy[y][x])
+		{
+			if (ft_isalpha(mapcopy[y][x]))
+			{
+				if (ft_isupper(mapcopy[y][x]))
+				{
+					return (1);
+				}
+			}
+			x++;		
+		}
+		x = 0;
+		y++;	
+	}
+	return (0);
+}
+
+
 int	is_map_path(char **mapcopy)
 {
 	t_point size;
@@ -48,7 +88,17 @@ int	is_map_path(char **mapcopy)
 	printf("\n                             b_x :%d, b_y :%d   s_x :%d, s_y :%d", ptr_begin->x, ptr_begin->y, ptr_size->x, ptr_size->y );
 
 
-//	flood_fill(mapcopy, &size, &begin);
+	flood_fill(mapcopy, &size, &begin);
+	flood_fill(mapcopy, &size, &begin);
+	printmap(mapcopy);
+
+	
+	if (is_uppercase_in_map(mapcopy))
+	{
+		ft_free_double_tab(mapcopy);
+		return (1);	
+	}
+	ft_free_double_tab(mapcopy);
 	return (0);	
 }
 
@@ -75,11 +125,7 @@ int	mapcheck(t_data *data)
 	mapcopy = ft_mapdup(data);
 	printmap(mapcopy);
 	if (is_map_path(mapcopy))
-		return (ft_putstr_fd("Error\nno path possible", 1), 1);
-
-
-	
-		
+		return (ft_putstr_fd("\nError\nno path possible", 1), 1);
 	return (0);
 }
 
