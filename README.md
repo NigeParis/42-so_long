@@ -16,3 +16,7 @@ You must create a basic 2D game in which a dolphin
 escapes Earth after eating some fish. Instead of
 a dolphin, fish, and the Earth, you can use any
 character, any collectible and any place you want.
+
+
+
+![so_long](https://github.com/NigeParis/42-so_long/assets/128382762/dacb3f0f-eeb0-4f37-90d7-9082c5f7e51b)
