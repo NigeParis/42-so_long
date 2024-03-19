@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/19 12:16:55 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:29:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ int	list_file_errors(void)
 	int	errors;
 
 	errors = 0;
-	if (checkfile_exits("./assets/tile.xpm", "Tile image"))
+	if (checkfile_exits("./textures/tile.xpm", "Tile image"))
 		errors++;
-	if (checkfile_exits("./assets/up.xpm", "Player up image"))
+	if (checkfile_exits("./textures/up.xpm", "Player up image"))
 		errors++;
-	if (checkfile_exits("./assets/down.xpm", "Player down image"))
+	if (checkfile_exits("./textures/down.xpm", "Player down image"))
 		errors++;
-	if (checkfile_exits("./assets/left.xpm", "Player left image"))
+	if (checkfile_exits("./textures/left.xpm", "Player left image"))
 		errors++;
-	if (checkfile_exits("./assets/right.xpm", "Player right image"))
+	if (checkfile_exits("./textures/right.xpm", "Player right image"))
 		errors++;
-	if (checkfile_exits("./assets/wall.xpm", "Wall image"))
+	if (checkfile_exits("./textures/wall.xpm", "Wall image"))
 		errors++;
-	if (checkfile_exits("./assets/coll.xpm", "Collectable image"))
+	if (checkfile_exits("./textures/coll.xpm", "Collectable image"))
 		errors++;
-	if (checkfile_exits("./assets/exit.xpm", "Exit image"))
+	if (checkfile_exits("./textures/exit.xpm", "Exit image"))
 		errors++;
-	if (checkfile_exits("./assets/noexit.xpm", "No exit image"))
+	if (checkfile_exits("./textures/noexit.xpm", "No exit image"))
 		errors++;
 	return (errors);
 }

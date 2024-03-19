@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:35:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/18 14:43:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:30:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ void	load_tiles(t_data *data)
 	posx = 0;
 	posy = 0;
 	data->bak_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/tile.xpm", &posx, &posy);
+			"./textures/tile.xpm", &posx, &posy);
 	data->playerup_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/up.xpm", &posx, &posy);
+			"./textures/up.xpm", &posx, &posy);
 	data->playerdown_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/down.xpm", &posx, &posy);
+			"./textures/down.xpm", &posx, &posy);
 	data->playerleft_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/left.xpm", &posx, &posy);
+			"./textures/left.xpm", &posx, &posy);
 	data->playerright_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/right.xpm", &posx, &posy);
+			"./textures/right.xpm", &posx, &posy);
 	data->wall_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/wall.xpm", &posx, &posy);
+			"./textures/wall.xpm", &posx, &posy);
 	data->coll_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/coll.xpm", &posx, &posy);
+			"./textures/coll.xpm", &posx, &posy);
 	data->exit_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/exit.xpm", &posx, &posy);
+			"./textures/exit.xpm", &posx, &posy);
 	data->noexit_ptr = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./assets/noexit.xpm", &posx, &posy);
+			"./textures/noexit.xpm", &posx, &posy);
 }
 
 void	get_player_map_start_pos(t_data *data)
