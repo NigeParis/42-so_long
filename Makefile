@@ -32,6 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Creating FILE .......\n"
+	@make -C ./mlx/ all
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(FT_PRINTF)  $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
