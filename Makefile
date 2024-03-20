@@ -15,7 +15,7 @@ CC=cc
 
 SRC_DIR=
 OBJ_DIR=
-INCLUDE= -I/usr/include -Imlx
+INCLUDE= -I./usr/include -Imlx
 SRC= ./src/main.c   ./src/player.c ./src/player_move.c ./src/get_next_line.c \
 	 ./src/get_next_line_utils.c ./src/mapcheck_utils.c ./src/mapcheck.c \
 	 ./src/map_render.c ./src/map_exit.c ./src/map_get.c ./src/map_get_utils.c\
@@ -33,14 +33,17 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo "Creating FILE .......\n"
 	@make -C ./mlx/ all
+	@make -C ./libft/ all
+	@make -C ./ft_printf/ all
+
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(FT_PRINTF)  $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 	@echo "COMPILE all c files to .o FILES .......\n"
+
 	@$(CC) $(CFLAGS) -c $(SRCS)  $(HEAD)
 
 lib:
-
 	@make -C ./ft_printf/ re
 	@make -C ./libft/ re
 	@make -C ./mlx/ re
@@ -54,15 +57,14 @@ libfclean:
 	@make -C ./libft/ fclean
 	@make -C ./mlx/ clean
 
-clean:
+clean: libclean
 	@rm -f $(OBJ)
 
-fclean:clean libclean
+fclean:clean libfclean
 	@echo "FCLEAN all .o et .a files .......\n"
 	@rm -f $(NAME)
-	@make -C ./mlx/ clean
 
-re:fclean libclean lib all
+re: fclean libfclean lib all
 
 	@echo "All erased and re-compiled .......\n"
 
