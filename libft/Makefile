@@ -44,12 +44,12 @@ $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 $(OBJ):
 	@echo "\nCOMPILE all c files to .o FILES .......\n"
-	$(CC) $(CFLAGS) $(CCOPTIONS) $(SRCS) -I./$(HEAD)
+	$(CC) $(CFLAGS) $(CCOPTIONS) $(SRCS) -I.$(HEAD)
 
 bonus:
 	@echo "\nCOMPILE all c files to .o FILES .......\n"
-	$(CC) $(CFLAGS) $(CCOPTIONS) $(SRCS) -I./$(HEAD)
-	$(CC) $(CFLAGS) $(CCOPTIONS) $(BONUS_SRC) -I./$(HEAD)
+	$(CC) $(CFLAGS) $(CCOPTIONS) $(SRCS) -I.$(HEAD)
+	$(CC) $(CFLAGS) $(CCOPTIONS) $(BONUS_SRC) -I.$(HEAD)
 	@echo "\nCreating Libft.a FILE .......\n"
 	ar -rcs $(NAME) $(OBJ) $(BONUS_OBJ)
 	@echo "\nDone ! with bonus functions ......\n"

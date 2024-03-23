@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 
 $(OBJ):
 	@echo "\nCOMPILE all c files to .o FILES .......\n"
-	$(CC) $(CFLAGS) $(CCOPTIONS) $(SRCS) -I$(HEAD)
+	$(CC) $(CFLAGS) $(CCOPTIONS) $(SRCS) -I.$(HEAD)
 	
 clean:
 	rm -f $(SRC_OBJ) 
